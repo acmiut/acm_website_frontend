@@ -3,6 +3,21 @@ import { FlaskConical, LogIn, Menu, UserRoundPlus, X } from 'lucide-react';
 import logoIcon from '../assets/react.svg';
 import { Link, useNavigate, useLocation } from 'react-router';
 
+const HEADER_OFFSET = 80;
+
+const scrollToSection = (sectionId: string) => {
+  if (sectionId === 'Home') {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    return;
+  }
+
+  const element = document.getElementById(sectionId);
+  if (element) {
+    const y = element.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  }
+};
+
 const useLinkClickHandler = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -13,22 +28,9 @@ const useLinkClickHandler = () => {
 
       if (location.pathname !== '/') {
         navigate('/');
-        if (sectionId !== 'Home')
-          setTimeout(() => {
-            const element = document.getElementById(sectionId);
-            if (element) {
-              const yOffset = -80;
-              const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
-              window.scrollTo({ top: y, behavior: 'smooth' });
-            }
-          }, 150);
+        setTimeout(() => scrollToSection(sectionId), 150);
       } else {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          const yOffset = -80;
-          const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
-          window.scrollTo({ top: y, behavior: 'smooth' });
-        }
+        scrollToSection(sectionId);
       }
     } else {
       navigate(href);
@@ -46,15 +48,8 @@ type NavbarItemData = {
 };
 
 const NavBarItems: NavbarItemData[] = [
-  { content: '', href: '/#Home' },
-  { content: 'درباره', href: '/#About' },
-  { content: 'پرسش و پاسخ', href: '/#FAQ' },
-  // { content: 'گالری تصاویر', href: '#Gallery' },
-  { content: 'کادر برگزاری', href: '/#Team' },
-  { content: 'چالش هفتگی', href: '/challenge' },
-  { content: 'دوره قبل', href: '/docs/mehregan25/summer-camp' },
-  { content: 'مستندات', href: '/docs' },
-  { content: 'ارتباط با ما', href: '/contact-us' },
+  { content: 'خانه', href: '/#Home' },
+  { content: 'تست', href: '/#About' }
 ];
 
 const NavItems = () => {
@@ -88,8 +83,7 @@ const Logo = () => {
         className="h-10 w-10 object-contain transition-transform group-hover:scale-105 md:h-12 md:w-12"
       />
       <span className="hidden text-right leading-tight sm:block">
-        <span className="block text-sm font-black tracking-wide text-white">کارسوق</span>
-        <span className="block text-[11px] font-bold text-cyan-100/70">ریاضی مهرگان</span>
+        <span className="block text-sm font-black tracking-wide text-white">ACM</span>
       </span>
     </Link>
   );
@@ -107,7 +101,7 @@ const LoginButton = () => {
 const SignUpButton = () => {
   return (
     <a
-      href="https://form.sampad.gov.ir/sampad/formView/3097"
+      href=""
       target="_blank"
       rel="noopener noreferrer"
       className="lab-button-primary hidden min-h-10 px-4 py-2 text-xs md:inline-flex md:text-sm"
@@ -201,10 +195,6 @@ const Navbar: React.FC = () => {
         </div>
 
         <div className="flex items-center gap-2 md:gap-3">
-          <span className="hidden items-center gap-2 rounded-full border border-amber-200/20 bg-amber-200/10 px-3 py-2 text-xs font-bold text-amber-100 lg:inline-flex">
-            <FlaskConical size={14} aria-hidden="true" />
-            دوره ۲۶
-          </span>
           <LoginButton />
           <SignUpButton />
           <Hamburger isOpen={isOpen} setIsOpen={setIsOpen} />
