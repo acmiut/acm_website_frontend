@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FlaskConical, LogIn, Menu, UserRoundPlus, X } from 'lucide-react';
+import { LogIn, Menu, UserRoundPlus, X } from 'lucide-react';
 import logoIcon from '../assets/react.svg';
 import { Link, useNavigate, useLocation } from 'react-router';
 
