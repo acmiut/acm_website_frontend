@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { LogIn, Menu, UserRoundPlus, X } from 'lucide-react';
-import logoIcon from '../assets/react.svg';
+import logoCompetition from '../assets/logos/logo-ieee-style.png';
+import logoClub from '../assets/logos/logo-club.png';
+import logoUniversity from '../assets/logos/logo-university.png';
 import { Link, useNavigate, useLocation } from 'react-router';
 
 const HEADER_OFFSET = 80;
@@ -74,18 +76,37 @@ const NavItems = () => {
   );
 };
 
+type LogoItem = {
+  src: string;
+  alt: string;
+  /** Black-ink logos are inverted to white so they stay visible on the dark header. */
+  invert?: boolean;
+};
+
+const LOGOS: LogoItem[] = [
+  { src: logoCompetition, alt: 'لوگوی مسابقات' },
+  { src: logoClub, alt: 'لوگوی انجمن علمی', invert: true },
+  { src: logoUniversity, alt: 'لوگوی دانشگاه', invert: true },
+];
+
 const Logo = () => {
   return (
-    <Link to="/" className="group flex items-center gap-3">
-      <img
-        src={logoIcon}
-        alt="Karsoogh Logo"
-        className="h-10 w-10 object-contain transition-transform group-hover:scale-105 md:h-12 md:w-12"
-      />
-      <span className="hidden text-right leading-tight sm:block">
+    <div className="flex items-center gap-5 sm:gap-7 md:gap-8">
+      <span className="flex items-center gap-2 sm:gap-3">
+        {LOGOS.map(({ src, alt, invert }) => (
+          <img
+            key={src}
+            src={src}
+            alt={alt}
+            className={`h-8 w-auto select-none object-contain sm:h-9 md:h-11 ${invert ? 'invert' : ''}`}
+            draggable={false}
+          />
+        ))}
+      </span>
+      <span className="hidden text-right leading-tight lg:block">
         <span className="block text-sm font-black tracking-wide text-white">ACM</span>
       </span>
-    </Link>
+    </div>
   );
 };
 
