@@ -6,8 +6,8 @@
 }
 
 :root {
-  --c-bg: #070b14;
-  --c-bg-2: #0b1424;
+  --c-bg: #000000;
+  --c-bg-2: #000000;
   --c-amber: #f9b44a;
   /* r, g, b triples: used as rgba(var(--c-x), alpha) */
   --c-border: 148, 163, 184;
@@ -185,34 +185,10 @@ body {
     to   { opacity: 1; }
   }
 
+  /* Pure black page background (no colored glows / grid overlay) */
   .lab-shell {
     @apply relative isolate min-h-screen overflow-hidden text-slate-100;
-    background:
-      radial-gradient(circle at 18% 10%, rgba(57, 211, 255, 0.14), transparent 32rem),
-      radial-gradient(circle at 82% 16%, rgba(249, 180, 74, 0.09), transparent 30rem),
-      linear-gradient(145deg, var(--c-bg), var(--c-bg-2) 58%, #05070d);
-  }
-
-  .lab-shell::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    background-image:
-      linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
-    background-size: 72px 72px;
-    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent 78%);
-  }
-
-  .lab-shell::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    background: linear-gradient(120deg, transparent, rgba(57, 211, 255, 0.05), transparent 48%);
+    background: #000000;
   }
 
   .lab-container {
