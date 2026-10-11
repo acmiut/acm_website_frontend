@@ -1,5 +1,6 @@
 import { createBrowserRouter, Navigate } from 'react-router';
 import PublicLayout from './components/PublicLayout';
+import Hero from './components/Hero';
 
 const router = createBrowserRouter([
   {
@@ -7,7 +8,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <div style={{ paddingTop: '6rem' }}>صفحه اصلی به‌زودی</div>,
+        element: <Hero />,
       },
     ],
   },
