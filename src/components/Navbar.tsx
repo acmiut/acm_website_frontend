@@ -121,16 +121,14 @@ const LoginButton = () => {
 
 const SignUpButton = () => {
   return (
-    <a
-      href=""
-      target="_blank"
-      rel="noopener noreferrer"
+    <Link
+      to="/register"
       className="lab-button-primary hidden min-h-10 px-4 py-2 text-xs md:inline-flex md:text-sm"
       title="رفتن به فرم ثبت‌نام"
     >
       <UserRoundPlus size={16} aria-hidden="true" />
       ثبت‌نام
-    </a>
+    </Link>
   );
 };
 
@@ -185,15 +183,14 @@ const MobileMenu = ({
           ))}
 
           <li className="pt-2">
-            <a
-              href="https://form.sampad.gov.ir/sampad/formView/3097"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/register"
+              onClick={() => setIsOpen(false)}
               className="lab-button-primary w-full"
               title="رفتن به فرم ثبت‌نام"
             >
               ثبت‌نام
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
